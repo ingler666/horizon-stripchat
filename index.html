@@ -142,8 +142,8 @@ window.dash = (function () {
       try {
         const u = await (await fetch('data/actualizado.json?v=' + Date.now())).json();
         const d = new Date(u.at);
-        const t = d.toLocaleString('es-MX', {timeZone: 'America/Tijuana', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit'});
-        document.querySelector('.t-upd').textContent = 'Actualizado: ' + t + ' (Tijuana)';
+        const t = d.toLocaleString('es-MX', {timeZone: 'America/Los_Angeles', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit'});
+        document.querySelector('.t-upd').textContent = 'Actualizado: ' + t + ' (Los Ángeles, CA)';
       } catch (e) { /* sin fecha */ }
     },
   };
