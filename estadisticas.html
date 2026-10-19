@@ -190,6 +190,21 @@ details.hz-det summary::after{content:" ▾";color:var(--mut)}
 .hz-tlx{display:flex;justify-content:space-between;font-size:10.5px;color:var(--mut);margin-top:5px}
 .hz-wk{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#c9c9d3}
 .hz-wk::before{content:"★";color:#f5b83d}
+.hz-boost{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:16px;border-radius:16px;background:linear-gradient(120deg,rgba(245,184,61,.22),rgba(232,48,62,.18));border:1px solid rgba(245,184,61,.45)}
+.hz-boost .ic{font-size:26px;width:48px;height:48px;border-radius:12px;background:#f5b83d;color:#0e0e12;display:grid;place-items:center;flex:none}
+.hz-boost .tx{flex:1;min-width:13rem}
+.hz-boost b{display:block;font-size:16px}
+.hz-boost .when{display:inline-block;margin-top:6px;font-weight:700;font-size:15px;color:#f5d27a}
+.hz-boost p{margin:6px 0 0;font-size:12.8px;line-height:1.5;color:#e2e2ea}
+.hz-ss{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr));gap:10px}
+.hz-ss div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+.hz-ss .pc{font-family:var(--font-anthropic-serif);font-size:26px;color:#2fd27a;line-height:1}
+.hz-ss .pc.n{font-size:15px;font-family:var(--font-anthropic-sans);font-weight:600;color:#4fb3ff;padding-top:6px}
+.hz-ss b{display:block;margin:6px 0 4px;font-size:14px}
+.hz-ss span{font-size:12.8px;line-height:1.5;color:#c9c9d3}
+.hz-chk{list-style:none;margin:0;padding:14px;background:var(--panel);border:1px solid var(--line);border-radius:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:8px 16px}
+.hz-chk li{font-size:13px;line-height:1.45;color:#e2e2ea;padding-left:24px;position:relative}
+.hz-chk li::before{content:"✓";position:absolute;left:0;top:0;width:17px;height:17px;border-radius:50%;background:rgba(47,210,122,.18);color:#2fd27a;font-size:11px;font-weight:700;display:grid;place-items:center}
 </style>
 </head>
 <body>
@@ -344,6 +359,36 @@ window.dash = (function () {
       <p class="lead">El mayor tráfico de Stripchat se concentra entre las 15:00 y las 23:00 UTC, cuando coinciden las tardes de Estados Unidos y las noches de Europa. Más tráfico también significa más competencia: si recién empiezas, las horas justo antes o después del pico pueden ayudarte a destacar.</p>
       <div class="hz-hc" id="horario-pais"></div>
       <p class="hz-src">Horarios calculados a partir del pico global de Stripchat (15:00 – 23:00 UTC) publicado por Stripchat Explorer. Lo ideal es elegir un bloque fijo y repetirlo todos los días.</p>
+    </section>
+
+    <section class="hz-sec2" id="stripscore">
+      <h2>StripScore: tu posición en Stripchat</h2>
+      <p class="lead">El StripScore es la calificación interna con la que Stripchat decide en qué lugar aparece tu sala en la lista de modelos. Cuanto más alto sea, más arriba sales y más personas entran a verte sin que tengas que buscarlas. Se calcula con lo que ganas, qué tan completo está tu perfil, la calidad de tu transmisión y la atención que das en privado.</p>
+      <div class="hz-ss">
+        <div><div class="pc">50–80 %</div><b>Lo que ganas por hora</b><span>Es lo que más pesa. Cuenta más ganar de forma constante cada hora que tener un día muy bueno y varios flojos.</span></div>
+        <div><div class="pc">20–50 %</div><b>Perfil y contenido</b><span>Todos los datos del perfil completos, al menos 5 fotos públicas y 1 video, imagen de fondo y paneles con tu meta y el tema del show.</span></div>
+        <div><div class="pc n">Calidad</div><b>Ajustes de transmisión</b><span>Video en 720p o más, micrófono encendido y conexión estable. Los cortes y el retraso te bajan de posición.</span></div>
+        <div><div class="pc n">Servicio</div><b>Shows privados</b><span>Las calificaciones que te dejan después de un privado también cuentan. Un buen trato sube tu puntaje.</span></div>
+      </div>
+      <ul class="hz-chk">
+        <li>Arma un menú de propinas con al menos 4 opciones, empezando por montos bajos.</li>
+        <li>Pon siempre una meta visible y usa juguetes interactivos para recibir propinas pequeñas y frecuentes.</li>
+        <li>Completa nombre, biografía, categoría e idiomas en tu perfil.</li>
+        <li>Sube mínimo 5 fotos públicas y 1 video, y configura una imagen de fondo.</li>
+        <li>Transmite en 720p o más con el micrófono encendido y buena conexión.</li>
+        <li>Haz turnos largos (6 horas o más) y publica tu horario para que tus seguidores regresen.</li>
+        <li>En concursos cuentan más muchos usuarios que pagan poco que un solo usuario que paga mucho.</li>
+        <li>No te sobrecargues: el cansancio baja la calidad del show y, con el tiempo, tu StripScore.</li>
+      </ul>
+      <div class="hz-boost">
+        <div class="ic">⚡</div>
+        <div class="tx">
+          <b>Tiempo de Promoción: gana 2x StripPoints</b>
+          <span class="when">Sábado 17:00 → Domingo 17:00</span>
+          <p>Durante este bloque, cada hora en vivo te da el doble de StripPoints. Es el mejor momento de la semana para hacer un turno largo: rindes el doble del mismo tiempo. Revisa en tu panel de Stripchat el horario exacto, porque se muestra en tu hora local y puede cambiar.</p>
+        </div>
+      </div>
+      <p class="hz-src">Stripchat no publica la fórmula exacta del StripScore. Los porcentajes y recomendaciones provienen de guías especializadas para modelos.</p>
     </section>
 
     <section class="hz-sec2" id="tips">
