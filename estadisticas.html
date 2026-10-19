@@ -205,6 +205,7 @@ details.hz-det summary::after{content:" ▾";color:var(--mut)}
 .hz-chk{list-style:none;margin:0;padding:14px;background:var(--panel);border:1px solid var(--line);border-radius:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:8px 16px}
 .hz-chk li{font-size:13px;line-height:1.45;color:#e2e2ea;padding-left:24px;position:relative}
 .hz-chk li::before{content:"✓";position:absolute;left:0;top:0;width:17px;height:17px;border-radius:50%;background:rgba(47,210,122,.18);color:#2fd27a;font-size:11px;font-weight:700;display:grid;place-items:center}
+.hz-boost .t-boost-la{display:block;font-size:12px;color:#e2e2ea;margin-top:3px}
 </style>
 </head>
 <body>
@@ -384,8 +385,8 @@ window.dash = (function () {
         <div class="ic">⚡</div>
         <div class="tx">
           <b>Tiempo de Promoción: gana 2x StripPoints</b>
-          <span class="when">Sábado 17:00 → Domingo 17:00</span>
-          <p>Durante este bloque, cada hora en vivo te da el doble de StripPoints. Es el mejor momento de la semana para hacer un turno largo: rindes el doble del mismo tiempo. Revisa en tu panel de Stripchat el horario exacto, porque se muestra en tu hora local y puede cambiar.</p>
+          <span class="when t-boost">Sábado 5:00 p. m. → Domingo 5:00 p. m.</span><span class="t-boost-la"></span>
+          <p>Durante este bloque, cada hora en vivo te da el doble de StripPoints. Es el mejor momento de la semana para hacer un turno largo: rindes el doble del mismo tiempo. El horario se muestra convertido a la hora local del país seleccionado.</p>
         </div>
       </div>
       <p class="hz-src">Stripchat no publica la fórmula exacta del StripScore. Los porcentajes y recomendaciones provienen de guías especializadas para modelos.</p>
@@ -777,7 +778,24 @@ dash.calc('eficiencia', {
     box.append(head, row, tw, el('div', 'hz-wk', 'Viernes y sábado por la noche hay cerca de 10 % más público.'));
   }
 
-  dash.onData(() => { prep(); drawHeader(); drawCards(); drawCharts(); drawTable(); drawHours(); });
+  const TZ = {Argentina: 'America/Argentina/Buenos_Aires', Colombia: 'America/Bogota', LA: 'America/Los_Angeles'};
+  function fmtBoost(d, tz) {
+    const parts = new Intl.DateTimeFormat('es-MX', {timeZone: tz, weekday: 'long', hour: 'numeric', minute: '2-digit', hour12: true}).formatToParts(d);
+    const g = (t) => (parts.find((x) => x.type === t) || {}).value || '';
+    const wd = g('weekday'); const ap = /p/i.test(g('dayPeriod')) ? 'p. m.' : 'a. m.';
+    return wd.charAt(0).toUpperCase() + wd.slice(1) + ' ' + g('hour') + ':' + g('minute') + ' ' + ap;
+  }
+  function drawBoost() {
+    const w = document.querySelector('.t-boost'); if (!w) return;
+    const now = new Date();
+    const start = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - now.getUTCDay()));
+    const end = new Date(start.getTime() + 864e5);
+    const tz = TZ[pais()] || TZ.Argentina;
+    w.textContent = fmtBoost(start, tz) + ' → ' + fmtBoost(end, tz) + ' (hora de ' + pais() + ')';
+    document.querySelector('.t-boost-la').textContent = 'En Los Ángeles: ' + fmtBoost(start, TZ.LA) + ' → ' + fmtBoost(end, TZ.LA);
+  }
+
+  dash.onData(() => { prep(); drawHeader(); drawCards(); drawCharts(); drawTable(); drawHours(); drawBoost(); });
 })();
 </script>
 <script>
