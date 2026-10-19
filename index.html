@@ -238,6 +238,8 @@ details.hz-det summary::after{content:" ▾";color:var(--mut)}
 .hz-upd .hz-live{color:#e2e2ea}
 .hz-foot div{font-size:12px;color:#c9c9d3}
 .hz-legal{max-width:62ch;margin:6px auto 0;font-size:10.5px;line-height:1.5;color:var(--mut)}
+.hz-nmt{color:var(--fg);font-weight:600;font-size:14px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hz-table .hz-num{text-align:center;color:var(--mut);width:2.5rem;padding:7px 6px;font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
@@ -372,6 +374,7 @@ window.dash = (function () {
         <div class="hz-scroll">
           <table class="hz-table" data-source="modelos" data-row-key="nombre">
             <thead><tr>
+              <th class="hz-num">#</th>
               <th class="l" data-field="nombre"><button type="button" data-k="nombre">Modelo</button></th>
               <th class="l sec" data-field="categoria"><button type="button" data-k="categoria">Categoría</button></th>
               <th data-field="seguidores"><button type="button" data-k="seguidores">Seguidores</button></th>
@@ -699,13 +702,12 @@ dash.calc('eficiencia', {
       const av = el('div', 'hz-av ' + k, r.nombre.replace(/[^A-Za-z0-9]/g, '').charAt(0).toUpperCase() || '?');
       av.appendChild(el('span', 'hz-rk', '#' + rankOf.get(r.nombre)));
       const nm = el('div', 'hz-nm');
-      const a = el('a', null, r.nombre); a.href = shLink(r.nombre); a.target = '_blank'; a.rel = 'noopener noreferrer';
+      const a = el('span', 'hz-nmt', r.nombre);
       const meta = el('div', 'hz-meta');
       meta.appendChild(el('span', 'hz-badge ' + k, CATL(r.categoria)));
       const st = status(r.ultima_conexion);
       const s = el('span', 'hz-st ' + st.cls); s.appendChild(el('i')); s.appendChild(document.createTextNode(st.txt));
       meta.appendChild(s);
-      if (r.antiguedad) meta.appendChild(el('span', 'hz-st', r.antiguedad));
       nm.append(a, meta);
       head.append(av, nm);
       const stats = el('div', 'hz-stats');
@@ -777,12 +779,12 @@ dash.calc('eficiencia', {
     }
   }
 
-  const COLS = Array.from(root.querySelectorAll('.hz-table thead th')).map((th) => ({k: th.querySelector('button').dataset.k, cls: th.className}));
+  const COLS = Array.from(root.querySelectorAll('.hz-table thead th[data-field]')).map((th) => ({k: th.querySelector('button').dataset.k, cls: th.className}));
   function cellText(k, v) { if (v == null || v === '') return '–'; if (k === 'horas') return fmtH(v);
     if (k === 'categoria') return CATL(v); if (NUM.includes(k)) return fmt(v); return String(v); }
   function drawTable() {
     const tbody = root.querySelector('.hz-table tbody');
-    root.querySelectorAll('.hz-table th').forEach((th) => { if (th.querySelector('button').dataset.k === sortKey) th.setAttribute('aria-sort', sortDir < 0 ? 'descending' : 'ascending'); else th.removeAttribute('aria-sort'); });
+    root.querySelectorAll('.hz-table th[data-field]').forEach((th) => { if (th.querySelector('button').dataset.k === sortKey) th.setAttribute('aria-sort', sortDir < 0 ? 'descending' : 'ascending'); else th.removeAttribute('aria-sort'); });
     if (dash.data('modelos').status !== 'ok') { tbody.replaceChildren(); return; }
     const isNum = NUM.includes(sortKey);
     const rows = filtered().slice().sort((a, b) => {
@@ -790,11 +792,12 @@ dash.calc('eficiencia', {
       if (x == null || x === '') return 1; if (y == null || y === '') return -1;
       return isNum ? (x - y) * sortDir : String(x).localeCompare(String(y), 'es') * sortDir;
     });
-    tbody.replaceChildren(...rows.map((r) => {
+    tbody.replaceChildren(...rows.map((r, n) => {
       const tr = el('tr');
+      tr.appendChild(el('td', 'hz-num', String(n + 1)));
       COLS.forEach((c) => {
         const td = el('td', c.cls);
-        if (c.k === 'nombre') { const a = el('a', null, r.nombre); a.href = shLink(r.nombre); a.target = '_blank'; a.rel = 'noopener noreferrer'; td.appendChild(a); }
+        if (c.k === 'nombre') { td.textContent = r.nombre; }
         else td.textContent = cellText(c.k, r[c.k]);
         tr.appendChild(td);
       });
