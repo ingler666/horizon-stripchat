@@ -229,6 +229,11 @@ details.hz-det summary::after{content:" ▾";color:var(--mut)}
 .hz-ring{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12.5px;color:#c9c9d3}
 .hz-ring .r{width:78px;height:78px;border-radius:50%;background:conic-gradient(#ff4d8d calc(var(--p)*1%),#22222b 0);display:grid;place-items:center}
 .hz-ring .r b{width:60px;height:60px;border-radius:50%;background:var(--panel);display:grid;place-items:center;font-size:17px;color:#fff}
+.hz-mk2 .ic{color:var(--ac);display:inline-flex;width:36px;height:36px;border-radius:10px;align-items:center;justify-content:center;background:color-mix(in srgb,var(--ac) 16%,transparent)}
+.hz-boost .ic{background:linear-gradient(135deg,#f5b83d,#e8303e)!important}
+.hz-cty{font-size:12.8px;line-height:1.55;color:#e2e2ea;padding:12px;border-radius:10px;background:rgba(116,172,223,.1);border:1px solid rgba(116,172,223,.3)}
+.hz-cty b{color:#fff}
+.hz-cty .mini{width:20px;height:14px;vertical-align:-2px;margin-right:6px}
 </style>
 </head>
 <body>
@@ -357,15 +362,42 @@ window.dash = (function () {
       </div>
     </section>
 
+    <section class="hz-panel" id="tabla">
+      <details class="hz-det">
+        <summary>Ver tabla completa</summary>
+        <div class="hz-scroll">
+          <table class="hz-table" data-source="modelos" data-row-key="nombre">
+            <thead><tr>
+              <th class="l" data-field="nombre"><button type="button" data-k="nombre">Modelo</button></th>
+              <th class="l sec" data-field="categoria"><button type="button" data-k="categoria">Categoría</button></th>
+              <th data-field="seguidores"><button type="button" data-k="seguidores">Seguidores</button></th>
+              <th data-field="seguidores_ganados"><button type="button" data-k="seguidores_ganados">Ganados</button></th>
+              <th data-source="eficiencia" data-field="seguidores_por_hora"><button type="button" data-k="seguidores_por_hora">Seg./hora</button></th>
+              <th data-field="horas"><button type="button" data-k="horas">Horas</button></th>
+              <th class="sec" data-field="transmisiones"><button type="button" data-k="transmisiones">Transm.</button></th>
+              <th data-field="promedio_espectadores"><button type="button" data-k="promedio_espectadores">Prom. espect.</button></th>
+              <th class="sec" data-field="pico_espectadores"><button type="button" data-k="pico_espectadores">Pico</button></th>
+              <th data-field="espectadores_24h"><button type="button" data-k="espectadores_24h">Hoy (24 h)</button></th>
+              <th class="sec" data-field="mejor_puesto"><button type="button" data-k="mejor_puesto">Mejor puesto</button></th>
+              <th class="sec" data-field="puesto_promedio"><button type="button" data-k="puesto_promedio">Puesto prom.</button></th>
+              <th class="l sec" data-field="antiguedad"><button type="button" data-k="antiguedad">Antigüedad</button></th>
+              <th class="l sec" data-field="ultima_conexion"><button type="button" data-k="ultima_conexion">Última vez</button></th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+
     <section class="hz-sec2" id="trafico">
       <h2>Análisis de tráfico en Stripchat</h2>
       <p class="lead">El análisis de tráfico en Stripchat requiere un enfoque especializado. Al tratarse de una industria de alto tráfico y alta conversión, medir los datos correctos es crucial para optimizar las ganancias de las modelos. A continuación, se presenta un desglose de las métricas clave.</p>
 
       <div class="hz-mk2">
-        <div style="--ac:#4fb3ff"><span class="ic">🌐</span><b>646 M</b><span class="lb">visitas a Stripchat en septiembre de 2026</span><span class="up">▲ 5,4 % vs. agosto</span></div>
-        <div style="--ac:#f5b83d"><span class="ic">⏱️</span><b>12 min</b><span class="lb">dura en promedio cada visita</span></div>
-        <div style="--ac:#ff4d8d"><span class="ic">🚪</span><b>7 salas</b><span class="lb">visita cada usuario: compara varias antes de quedarse</span></div>
-        <div style="--ac:#2fd27a"><span class="ic">🔎</span><b>+57 %</b><span class="lb">creció en un mes el público que llega desde buscadores</span></div>
+        <div style="--ac:#4fb3ff"><span class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg></span><b>646 M</b><span class="lb">visitas a Stripchat en septiembre de 2026</span><span class="up">▲ 5,4 % vs. agosto</span></div>
+        <div style="--ac:#f5b83d"><span class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M10 2h4"/></svg></span><b>12 min</b><span class="lb">dura en promedio cada visita</span></div>
+        <div style="--ac:#ff4d8d"><span class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 4h3a2 2 0 0 1 2 2v14"/><path d="M2 20h3"/><path d="M13 20h9"/><path d="M10 12v.01"/><path d="M13 4.56v16.32a1 1 0 0 1-1.24.97L5 20V5.56a2 2 0 0 1 1.51-1.94l4-1A2 2 0 0 1 13 4.56z"/></svg></span><b>7 salas</b><span class="lb">visita cada usuario: compara varias antes de quedarse</span></div>
+        <div style="--ac:#2fd27a"><span class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span><b>+57 %</b><span class="lb">creció en un mes el público que llega desde buscadores</span></div>
       </div>
 
       <div class="hz-vis">
@@ -378,6 +410,7 @@ window.dash = (function () {
             <div class="hz-br"><span>🇲🇽 México</span><span class="tr"><i style="width:24.6%"></i></span><span class="pc">5,7 %</span></div>
             <div class="hz-br hl"><span>🇨🇴 Colombia</span><span class="tr"><i style="width:24%"></i></span><span class="pc">5,6 %</span></div>
           </div>
+          <div class="hz-cty t-pub"></div>
           <p class="tip">El público que más paga suele estar en Estados Unidos. Un saludo y frases básicas en inglés amplían mucho tu audiencia.</p>
         </div>
         <div class="hz-vc" style="--ac:#ff4d8d">
@@ -425,7 +458,7 @@ window.dash = (function () {
         <li>No te sobrecargues: el cansancio baja la calidad del show y, con el tiempo, tu StripScore.</li>
       </ul>
       <div class="hz-boost">
-        <div class="ic">⚡</div>
+        <div class="ic"><svg viewBox="0 0 24 24" width="26" height="26" fill="#fff" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
         <div class="tx">
           <b>Tiempo de Promoción: gana 2x StripPoints</b>
           <span class="when t-boost">Sábado 5:00 p. m. → Domingo 5:00 p. m.</span><span class="t-boost-la"></span>
@@ -452,32 +485,7 @@ window.dash = (function () {
       </div>
     </section>
 
-    <section class="hz-panel" id="tabla">
-      <details class="hz-det">
-        <summary>Ver tabla completa</summary>
-        <div class="hz-scroll">
-          <table class="hz-table" data-source="modelos" data-row-key="nombre">
-            <thead><tr>
-              <th class="l" data-field="nombre"><button type="button" data-k="nombre">Modelo</button></th>
-              <th class="l sec" data-field="categoria"><button type="button" data-k="categoria">Categoría</button></th>
-              <th data-field="seguidores"><button type="button" data-k="seguidores">Seguidores</button></th>
-              <th data-field="seguidores_ganados"><button type="button" data-k="seguidores_ganados">Ganados</button></th>
-              <th data-source="eficiencia" data-field="seguidores_por_hora"><button type="button" data-k="seguidores_por_hora">Seg./hora</button></th>
-              <th data-field="horas"><button type="button" data-k="horas">Horas</button></th>
-              <th class="sec" data-field="transmisiones"><button type="button" data-k="transmisiones">Transm.</button></th>
-              <th data-field="promedio_espectadores"><button type="button" data-k="promedio_espectadores">Prom. espect.</button></th>
-              <th class="sec" data-field="pico_espectadores"><button type="button" data-k="pico_espectadores">Pico</button></th>
-              <th data-field="espectadores_24h"><button type="button" data-k="espectadores_24h">Hoy (24 h)</button></th>
-              <th class="sec" data-field="mejor_puesto"><button type="button" data-k="mejor_puesto">Mejor puesto</button></th>
-              <th class="sec" data-field="puesto_promedio"><button type="button" data-k="puesto_promedio">Puesto prom.</button></th>
-              <th class="l sec" data-field="antiguedad"><button type="button" data-k="antiguedad">Antigüedad</button></th>
-              <th class="l sec" data-field="ultima_conexion"><button type="button" data-k="ultima_conexion">Última vez</button></th>
-            </tr></thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </details>
-    </section>
+    
 
     <section class="hz-about" id="analisis">
       <h2>Modelos de Stripchat por país</h2>
@@ -509,7 +517,7 @@ window.dash = (function () {
         <div><b>Seguidores por hora en vivo (Seg./hora)</b>Cuántos seguidores nuevos gana, en promedio, por cada hora que transmite. Mientras más alto, más productivas son sus horas en vivo.</div>
         <div><b>Horas · Transmisiones</b>Tiempo y veces en vivo en los últimos 14 días.</div>
         <div><b>Prom. espectadores</b>Personas viéndola en promedio mientras transmite.</div>
-        <div><b>Pico · Hoy (24 h)</b>Máximo de espectadores en 14 días y en las últimas 24 h (corte diario a las 5 p. m., hora de Los Ángeles).</div>
+        <div><b>Pico · Hoy (24 h)</b>Máximo de espectadores en 14 días y en las últimas 24 h (corte diario a las <span class="t-corte">9:00 p. m., hora de Argentina</span>).</div>
         <div><b>Mejor puesto · Puesto prom.</b>Su lugar en la lista mundial de Stripchat. Más bajo es mejor.</div>
       </div>
     </section>
@@ -852,7 +860,23 @@ dash.calc('eficiencia', {
     box.querySelector('.l3').textContent = d ? 'Los Ángeles, California, USA: ' + full('America/Los_Angeles') : '';
   }
 
-  dash.onData(() => { prep(); drawHeader(); drawCards(); drawCharts(); drawTable(); drawHours(); drawBoost(); drawUpd(); });
+  const PUB = {
+    Argentina: 'Argentina no aparece entre los 5 países que más visitan Stripchat, así que la mayor parte de tu público vendrá de fuera: Estados Unidos, Brasil y México. Unas frases en inglés y en portugués te abren a esos mercados. Además, en Argentina el público adulto navega casi todo desde el celular: entre 94 % y 96 % de las visitas en los principales sitios para adultos (Semrush, septiembre de 2026).',
+    Colombia: 'Colombia es el 5.º país que más visita Stripchat: 35,9 millones de visitas en septiembre de 2026 (5,6 % del total) y el 79 % desde el celular. Tu propio país es un mercado grande: transmitir en español también atrae público local, y con algo de inglés sumas a Estados Unidos, el mercado más grande.',
+  };
+  function drawPub() {
+    const b = document.querySelector('.t-pub'); if (!b) return;
+    const p = pais();
+    b.replaceChildren();
+    const fl = el('span', 'mini'); fl.innerHTML = FLAGS[p];
+    b.append(fl, el('b', null, 'En ' + p + ': '), document.createTextNode(PUB[p] || ''));
+    const c = document.querySelector('.t-corte'); if (c) {
+      const now = new Date(); const z = UTZ[p] || UTZ.Argentina;
+      c.textContent = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())).toLocaleString('es-MX', {timeZone: z, hour: 'numeric', minute: '2-digit'}) + ', hora de ' + p;
+    }
+  }
+
+  dash.onData(() => { prep(); drawHeader(); drawCards(); drawCharts(); drawTable(); drawHours(); drawBoost(); drawUpd(); drawPub(); });
 })();
 </script>
 <script>
