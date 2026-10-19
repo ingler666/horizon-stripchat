@@ -146,6 +146,30 @@ details.hz-det summary::after{content:" ▾";color:var(--mut)}
 .hz-upd{display:flex;flex-direction:column;align-items:flex-end;gap:4px;text-align:right}
 .t-upd2{font-size:11.5px;color:#c9c9d3}
 .hz-nav a.on{background:var(--red)!important;border-color:var(--red)!important;color:#fff!important;font-weight:600}
+.hz-sec2{display:flex;flex-direction:column;gap:12px}
+.hz-sec2>h2{margin:0;font-family:var(--font-anthropic-serif);font-weight:400;font-size:24px}
+.hz-sec2>.lead{margin:0;font-size:14px;line-height:1.6;color:#c9c9d3;max-width:70ch}
+.hz-kgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:10px}
+.hz-kc{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;border-top:3px solid var(--kc,var(--red))}
+.hz-kc h4{margin:0 0 6px;font-size:14px;color:var(--kc,var(--fg))}
+.hz-kc p{margin:0;font-size:12.8px;line-height:1.55;color:#c9c9d3}
+.hz-kc p+p{margin-top:6px}
+.hz-kc .tip{color:var(--fg)}
+.hz-mk{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,9rem),1fr));gap:8px}
+.hz-mk div{background:var(--panel2);border-radius:12px;padding:12px}
+.hz-mk b{display:block;font-family:var(--font-anthropic-serif);font-weight:400;font-size:22px}
+.hz-mk span{font-size:11.5px;color:var(--mut)}
+.hz-hours{width:100%;border-collapse:collapse;font-size:13px}
+.hz-hours th{text-align:left;font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;padding:8px 10px;border-bottom:1px solid var(--line)}
+.hz-hours td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+.hz-hours td b{color:#2fd27a}
+.hz-src{font-size:11px;color:var(--mut);margin:0}
+.hz-src a{color:var(--mut)}
+.hz-tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:10px;counter-reset:t}
+.hz-tips div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 14px 14px 48px;position:relative;counter-increment:t}
+.hz-tips div::before{content:counter(t);position:absolute;left:14px;top:14px;width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center}
+.hz-tips b{display:block;font-size:13.5px;margin-bottom:3px}
+.hz-tips span{font-size:12.8px;line-height:1.5;color:#c9c9d3}
 </style>
 </head>
 <body>
@@ -197,7 +221,7 @@ window.dash = (function () {
       <div class="hz-flag" aria-hidden="true"></div>
       <div>
         <h1>Ranking de rendimiento · <span class="t-pais">Argentina</span></h1>
-        <div class="sub">Estadísticas de los últimos 14 días · Mujeres y parejas<span class="t-nota"></span></div>
+        <div class="sub">Estadísticas de los últimos 14 días · Chicas y parejas<span class="t-nota"></span></div>
       </div>
     </div>
     <a class="hz-ad" href="https://horizonstudio.biz/" target="_blank" rel="noopener">
@@ -212,7 +236,7 @@ window.dash = (function () {
     </div>
     <div class="hz-tabs hz-cats" role="group" aria-label="Categoría" id="filtro">
       <button type="button" data-cat="Todas">Todas</button>
-      <button type="button" data-cat="Mujer">Mujeres</button>
+      <button type="button" data-cat="Mujer">Chicas</button>
       <button type="button" data-cat="Pareja">Parejas</button>
     </div>
   </header>
@@ -247,7 +271,7 @@ window.dash = (function () {
 
     <a class="hz-ad alt" href="https://horizonstudio.biz/" target="_blank" rel="noopener">
       <div class="ic">📈</div>
-      <div class="tx"><b>Usamos estos datos para hacer crecer a nuestras modelos</b><span>En Horizon Studio analizamos el mercado para definir horarios, metas y estrategia. Trabajamos con mujeres y parejas.</span></div>
+      <div class="tx"><b>Usamos estos datos para hacer crecer a nuestras modelos</b><span>En Horizon Studio analizamos el mercado para definir horarios, metas y estrategia. Trabajamos con chicas y parejas.</span></div>
       <div class="go">Ver más →</div>
     </a>
 
@@ -255,23 +279,76 @@ window.dash = (function () {
       <div class="hz-panel" id="crecimiento">
         <h3>Quién más crece</h3>
         <p class="note">Seguidores ganados recientemente.</p>
-        <div class="hz-legend"><span><i style="background:#ff4d8d"></i>Mujer</span><span><i style="background:#9b7bff"></i>Pareja</span></div>
+        <div class="hz-legend"><span><i style="background:#ff4d8d"></i>Chica</span><span><i style="background:#9b7bff"></i>Pareja</span></div>
         <div class="hz-chart dash-skeleton" data-source="modelos"></div>
         <div class="hz-tip"></div>
       </div>
       <div class="hz-panel" id="audiencia">
         <h3>Más audiencia por transmisión</h3>
         <p class="note">Espectadores promedio mientras está en vivo.</p>
-        <div class="hz-legend"><span><i style="background:#ff4d8d"></i>Mujer</span><span><i style="background:#9b7bff"></i>Pareja</span></div>
+        <div class="hz-legend"><span><i style="background:#ff4d8d"></i>Chica</span><span><i style="background:#9b7bff"></i>Pareja</span></div>
         <div class="hz-chart dash-skeleton" data-source="modelos"></div>
         <div class="hz-tip"></div>
       </div>
       <div class="hz-panel" id="eficiencia">
         <h3>Mejor rendimiento por hora</h3>
         <p class="note">Seguidores ganados por hora en vivo (5 horas o más).</p>
-        <div class="hz-legend"><span><i style="background:#ff4d8d"></i>Mujer</span><span><i style="background:#9b7bff"></i>Pareja</span></div>
+        <div class="hz-legend"><span><i style="background:#ff4d8d"></i>Chica</span><span><i style="background:#9b7bff"></i>Pareja</span></div>
         <div class="hz-chart dash-skeleton" data-source="eficiencia"></div>
         <div class="hz-tip"></div>
+      </div>
+    </section>
+
+    <section class="hz-sec2" id="trafico">
+      <h2>Análisis de tráfico en Stripchat</h2>
+      <p class="lead">El análisis de tráfico en Stripchat requiere un enfoque especializado. Al tratarse de una industria de alto tráfico y alta conversión, medir los datos correctos es crucial para optimizar las ganancias de las modelos. A continuación, se presenta un desglose de las métricas clave.</p>
+
+      <div class="hz-mk">
+        <div><b>646 M</b><span>visitas en septiembre de 2026 (+5,4 % vs. agosto)</span></div>
+        <div><b>12 min</b><span>duración media de cada visita</span></div>
+        <div><b>7 páginas</b><span>vistas por visita: el usuario recorre varias salas</span></div>
+        <div><b>+57 %</b><span>crecimiento mensual de visitas desde buscadores</span></div>
+      </div>
+
+      <div class="hz-kgrid">
+        <div class="hz-kc" style="--kc:#74acdf"><h4>¿De dónde viene el público?</h4><p>Estados Unidos aporta el 23 % del tráfico, seguido de Brasil (12 %), Japón (9 %), México (5,7 %) y Colombia (5,6 %).</p><p class="tip">Qué significa: el público que más paga suele estar en Estados Unidos. Un saludo y frases básicas en inglés amplían mucho tu audiencia.</p></div>
+        <div class="hz-kc" style="--kc:#ff4d8d"><h4>La mayoría mira desde el celular</h4><p>En Estados Unidos el 76 % de las visitas es desde móvil, en Colombia el 79 % y en México el 93 %.</p><p class="tip">Qué significa: encuadra pensando en una pantalla pequeña. Buena luz frontal, rostro visible y nada importante en los bordes.</p></div>
+        <div class="hz-kc" style="--kc:#f5b83d"><h4>Las visitas son largas</h4><p>Cada usuario pasa unos 12 minutos y visita alrededor de 7 salas.</p><p class="tip">Qué significa: tienes pocos segundos para retener a quien entra. Saluda por su nombre, ten un tema o meta visible y mantén la sala activa.</p></div>
+        <div class="hz-kc" style="--kc:#2fd27a"><h4>Cómo leer tus métricas</h4><p><b>Seguidores ganados</b> mide si atraes público nuevo. <b>Espectadores promedio</b> mide si lo retienes. <b>Seguidores por hora</b> mide si tus horas en vivo son productivas. <b>Mejor puesto</b> indica hasta dónde llegaste en el ranking mundial.</p><p class="tip">Compárate con las modelos de tu país en este panel para saber dónde mejorar.</p></div>
+      </div>
+      <p class="hz-src">Fuentes: Semrush (stripchat.com, septiembre de 2026) y Stripchat Explorer.</p>
+    </section>
+
+    <section class="hz-sec2" id="horarios">
+      <h2>Mejores horarios para transmitir</h2>
+      <p class="lead">El mayor tráfico de Stripchat se concentra entre las 15:00 y las 23:00 UTC, cuando coinciden las tardes de Estados Unidos y las noches de Europa. Los viernes y sábados por la noche el tráfico sube cerca de un 10 %. Más tráfico también significa más competencia: si recién empiezas, las horas justo antes o después del pico pueden ayudarte a destacar.</p>
+      <div class="hz-panel" style="padding:4px 4px 0">
+        <table class="hz-hours">
+          <thead><tr><th>País</th><th>Horario pico (hora local)</th><th>Para destacar con menos competencia</th></tr></thead>
+          <tbody>
+            <tr><td>🇦🇷 Argentina</td><td><b>12:00 p. m. – 8:00 p. m.</b></td><td>10:00 a. m. – 12:00 p. m. y 8:00 – 11:00 p. m.</td></tr>
+            <tr><td>🇨🇴 Colombia</td><td><b>10:00 a. m. – 6:00 p. m.</b></td><td>8:00 – 10:00 a. m. y 6:00 – 9:00 p. m.</td></tr>
+            <tr><td>🇺🇸 Los Ángeles (referencia)</td><td><b>8:00 a. m. – 4:00 p. m.</b></td><td>6:00 – 8:00 a. m. y 4:00 – 7:00 p. m.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="hz-src">Horarios calculados a partir del pico global de Stripchat (15:00 – 23:00 UTC) publicado por Stripchat Explorer, con el horario de verano vigente en Los Ángeles. Lo ideal es elegir un bloque fijo y repetirlo todos los días.</p>
+    </section>
+
+    <section class="hz-sec2" id="tips">
+      <h2>Tips para generar más</h2>
+      <p class="lead">Lo que más influye en el crecimiento dentro de Stripchat, según los datos del mercado y la experiencia de la agencia.</p>
+      <div class="hz-tips">
+        <div><b>Horario fijo</b><span>Transmite todos los días en el mismo bloque. Tus seguidores aprenden cuándo encontrarte y Stripchat premia la constancia.</span></div>
+        <div><b>Perfil completo</b><span>Fotos de buena calidad, una biografía que muestre tu personalidad e intereses, y tu horario visible.</span></div>
+        <div><b>Título y etiquetas</b><span>El tráfico desde buscadores crece mes a mes: usa un título claro y etiquetas que describan bien tu show. Las salas con juguetes interactivos (como Lovense) están entre las más buscadas.</span></div>
+        <div><b>Pensado para el celular</b><span>La mayoría del público mira desde el móvil. Revisa cómo se ve tu cámara en un teléfono antes de empezar.</span></div>
+        <div><b>Recibe a cada visitante</b><span>Saluda por su nombre a quien entra y mantén una meta o tema visible. Las primeras palabras deciden si se queda o pasa a otra sala.</span></div>
+        <div><b>Habla algo de inglés</b><span>Estados Unidos es el país que más visita Stripchat. Unas frases básicas te abren a ese público.</span></div>
+        <div><b>Lleva a tus fans contigo</b><span>Enlaza tus redes en el perfil y avisa por ahí cuándo vas a transmitir. Usa siempre el mismo nombre en todas las plataformas.</span></div>
+        <div><b>Lista de deseos segura</b><span>Usa una lista de regalos que proteja tus datos personales, para que tus fans puedan apoyarte sin que compartas tu dirección.</span></div>
+        <div><b>Mide tu progreso</b><span>Revisa cada semana tus seguidores ganados, espectadores promedio y seguidores por hora en este panel. Lo que no se mide, no mejora.</span></div>
+        <div><b>Cuida tu bienestar</b><span>Descansa, pon límites claros y pide apoyo cuando lo necesites. Una modelo que se siente bien rinde mejor y por más tiempo.</span></div>
       </div>
     </section>
 
@@ -315,6 +392,13 @@ window.dash = (function () {
         <p>Somos una agencia de modelos webcam con sede en Los Ángeles. Conoce cómo trabajamos y empieza con nosotros.</p>
       </div>
       <a href="https://horizonstudio.biz/" target="_blank" rel="noopener">Ir a Horizon Studio →</a>
+    </section>
+
+    <section class="hz-about" id="nosotros">
+      <h2>Acerca de nosotros</h2>
+      <p>Horizon Studio es una agencia de modelos webcam fundada en 2019, con sede en Los Ángeles, California. Trabajamos con chicas y parejas de habla hispana que transmiten desde su computadora o su celular, con acompañamiento cercano y pagos semanales.</p>
+      <p>Aspiramos a ser la agencia de referencia para modelos latinas en Stripchat, y creemos que eso se logra con información. Por eso creamos este panel: para que nuestras modelos conozcan su historial de rendimiento a lo largo del tiempo y se comparen con el mercado mediante gráficas y rankings, y así tomen mejores decisiones sobre sus horarios, su contenido y sus metas.</p>
+      <p>Lo compartimos de forma abierta porque es igual de útil para cualquier modelo de Stripchat que quiera entender cómo se mueve la plataforma y crecer con datos reales.</p>
     </section>
 
     <section class="hz-panel" id="glosario">
@@ -383,7 +467,8 @@ dash.calc('eficiencia', {
   const root = document.querySelector('.hz');
   const PINK = '#ff4d8d', VIO = '#9b7bff';
   const NUM = ['seguidores', 'seguidores_ganados', 'seguidores_por_hora', 'horas', 'transmisiones', 'promedio_espectadores', 'pico_espectadores', 'espectadores_24h', 'mejor_puesto', 'puesto_promedio'];
-  const CATNAME = {Todas: 'todas las categorías', Mujer: 'mujeres', Pareja: 'parejas'};
+  const CATNAME = {Todas: 'todas las categorías', Mujer: 'chicas', Pareja: 'parejas'};
+  const CATL = (c) => c === 'Mujer' ? 'Chica' : c;
   const enc = (s) => String(s).replace(/%/g, '%25').replace(/&/g, '%26').replace(/=/g, '%3D');
   const cat = () => dash.params().categoria || 'Todas';
   const pais = () => dash.params().pais || 'Argentina';
@@ -504,7 +589,7 @@ dash.calc('eficiencia', {
       const nm = el('div', 'hz-nm');
       const a = el('a', null, r.nombre); a.href = shLink(r.nombre); a.target = '_blank'; a.rel = 'noopener noreferrer';
       const meta = el('div', 'hz-meta');
-      meta.appendChild(el('span', 'hz-badge ' + k, r.categoria));
+      meta.appendChild(el('span', 'hz-badge ' + k, CATL(r.categoria)));
       const st = status(r.ultima_conexion);
       const s = el('span', 'hz-st ' + st.cls); s.appendChild(el('i')); s.appendChild(document.createTextNode(st.txt));
       meta.appendChild(s);
@@ -554,7 +639,7 @@ dash.calc('eficiencia', {
     g.append('text').attr('x', (d) => x0 + Math.max(3, x(opt.value(d))) + 6).attr('y', rowH / 2).attr('dy', '0.35em').attr('font-size', 12).attr('font-family', 'var(--font-anthropic-sans)').attr('fill', '#9a9aa8').style('font-variant-numeric', 'tabular-nums').text((d) => opt.fmt(opt.value(d)));
     g.append('rect').attr('width', w).attr('height', rowH).attr('fill', 'transparent')
       .on('mousemove', (event, d) => {
-        tip.replaceChildren(el('div', 'k', d.nombre + ' · ' + d.categoria));
+        tip.replaceChildren(el('div', 'k', d.nombre + ' · ' + CATL(d.categoria)));
         opt.tip(d).forEach((line) => tip.appendChild(el('div', null, line)));
         tip.style.display = 'block';
         const cr = card.getBoundingClientRect();
@@ -581,7 +666,8 @@ dash.calc('eficiencia', {
   }
 
   const COLS = Array.from(root.querySelectorAll('.hz-table thead th')).map((th) => ({k: th.querySelector('button').dataset.k, cls: th.className}));
-  function cellText(k, v) { if (v == null || v === '') return '–'; if (k === 'horas') return fmtH(v); if (NUM.includes(k)) return fmt(v); return String(v); }
+  function cellText(k, v) { if (v == null || v === '') return '–'; if (k === 'horas') return fmtH(v);
+    if (k === 'categoria') return CATL(v); if (NUM.includes(k)) return fmt(v); return String(v); }
   function drawTable() {
     const tbody = root.querySelector('.hz-table tbody');
     root.querySelectorAll('.hz-table th').forEach((th) => { if (th.querySelector('button').dataset.k === sortKey) th.setAttribute('aria-sort', sortDir < 0 ? 'descending' : 'ascending'); else th.removeAttribute('aria-sort'); });
