@@ -236,6 +236,8 @@ details.hz-det summary::after{content:" ▾";color:var(--mut)}
 .hz-cty .mini{width:20px;height:14px;vertical-align:-2px;margin-right:6px}
 .hz-upd{align-items:flex-start!important;text-align:left!important;gap:3px!important;padding:9px 12px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
 .hz-upd .hz-live{color:#e2e2ea}
+.hz-foot div{font-size:12px;color:#c9c9d3}
+.hz-legal{max-width:62ch;margin:6px auto 0;font-size:10.5px;line-height:1.5;color:var(--mut)}
 </style>
 </head>
 <body>
@@ -294,7 +296,7 @@ window.dash = (function () {
       <div class="tx"><b>Horizon Studio · Agencia de modelos webcam desde 2019</b><span>Trabaja desde tu computadora o celular, con acompañamiento profesional y pagos semanales.</span></div>
       <div class="go">Conócenos →</div>
     </a>
-    <p class="hz-take" id="conclusion">En <span class="t-pais2">Argentina</span>, en <span class="t-cat">todas las categorías</span>, <b class="t-n1 dash-skeleton" data-source="modelos" data-field="nombre">—</b> es quien más seguidores ganó (+<b class="t-g1 dash-skeleton" data-source="modelos" data-field="seguidores_ganados">—</b>) y <b class="t-n2 dash-skeleton" data-source="modelos" data-field="nombre">—</b> tiene la mayor audiencia promedio (<b class="t-a2 dash-skeleton" data-source="modelos" data-field="promedio_espectadores">—</b> espectadores).</p>
+    <p class="hz-take" id="conclusion" hidden>En <span class="t-pais2">Argentina</span>, en <span class="t-cat">todas las categorías</span>, <b class="t-n1 dash-skeleton" data-source="modelos" data-field="nombre">—</b> es quien más seguidores ganó (+<b class="t-g1 dash-skeleton" data-source="modelos" data-field="seguidores_ganados">—</b>) y <b class="t-n2 dash-skeleton" data-source="modelos" data-field="nombre">—</b> tiene la mayor audiencia promedio (<b class="t-a2 dash-skeleton" data-source="modelos" data-field="promedio_espectadores">—</b> espectadores).</p>
     <div class="hz-tabs hz-paises" role="group" aria-label="País" id="paises">
       <button type="button" data-pais="Argentina"><span class="mini" data-flag="Argentina"></span>Argentina</button>
       <button type="button" data-pais="Colombia"><span class="mini" data-flag="Colombia"></span>Colombia</button>
@@ -310,14 +312,14 @@ window.dash = (function () {
     <section class="hz-kpis" id="cifras">
       <div class="hz-kpi"><div class="l">Modelos</div><div class="n dash-skeleton" data-source="resumen" data-field="modelos" data-where="pais=Argentina&amp;categoria=Todas">—</div></div>
       <div class="hz-kpi"><div class="l">Seguidores totales</div><div class="n dash-skeleton" data-source="resumen" data-field="seguidores" data-where="pais=Argentina&amp;categoria=Todas">—</div></div>
-      <div class="hz-kpi"><div class="l">Ganados · 14 días</div><div class="n dash-skeleton" data-source="resumen" data-field="seguidores_ganados" data-where="pais=Argentina&amp;categoria=Todas">—</div></div>
+      <div class="hz-kpi"><div class="l">Seguidores nuevos · últimos 14 días</div><div class="n dash-skeleton" data-source="resumen" data-field="seguidores_ganados" data-where="pais=Argentina&amp;categoria=Todas">—</div></div>
       <div class="hz-kpi"><div class="l">Horas en vivo</div><div class="n dash-skeleton" data-source="resumen" data-field="horas" data-where="pais=Argentina&amp;categoria=Todas">—</div></div>
       <div class="hz-kpi"><div class="l">Espect. promedio</div><div class="n dash-skeleton" data-source="resumen" data-field="promedio_espectadores" data-where="pais=Argentina&amp;categoria=Todas">—</div></div>
     </section>
 
     <section class="hz-sec" id="modelos">
       <h2>Modelos</h2>
-      <p class="note">Toca "Horario" para ver las horas y sesiones en Striphours, o "Sala" para abrir su perfil en Stripchat de cada modelo.</p>
+      <p class="note">Toca "Strip Hours" para ver las horas y sesiones de cada modelo en Striphours, o "Sala" para abrir su perfil en Stripchat.</p>
       <div class="hz-bar">
         <input class="hz-in" type="search" placeholder="Buscar modelo…" aria-label="Buscar modelo">
         <select class="hz-sel" aria-label="Ordenar por">
@@ -463,11 +465,11 @@ window.dash = (function () {
         <div class="ic"><svg viewBox="0 0 24 24" width="26" height="26" fill="#fff" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
         <div class="tx">
           <b>Tiempo de Promoción: gana 2x StripPoints</b>
-          <span class="when t-boost">Sábado 5:00 p. m. → Domingo 5:00 p. m.</span><span class="t-boost-la"></span>
+          <span class="when t-boost">Sábado 5:00 p. m. → Domingo 5:00 p. m.</span>
           <p>Durante este bloque, cada hora en vivo te da el doble de StripPoints. Es el mejor momento de la semana para hacer un turno largo: rindes el doble del mismo tiempo. El horario se muestra convertido a la hora local del país seleccionado.</p>
         </div>
       </div>
-      <p class="hz-src">Stripchat no publica la fórmula exacta del StripScore. Los porcentajes y recomendaciones provienen de guías especializadas para modelos.</p>
+      <div class="hz-kc" style="--kc:#f5b83d"><h4>¿Qué son los StripPoints?</h4><p>Son puntos que Stripchat entrega a las modelos más activas y con mejor participación durante sus transmisiones. Se reparten cada 3 horas y se usan para decidir a las ganadoras de los concursos de la plataforma, que reparten premios en dinero cada mes.</p><p class="tip">Mientras más StripPoints acumules, más posibilidades tienes de ganar un concurso. Por eso el Tiempo de Promoción vale tanto: cada hora en vivo cuenta doble. Los detalles y premios de cada concurso aparecen en tu panel de modelo.</p></div>
     </section>
 
     <section class="hz-sec2" id="tips">
@@ -507,7 +509,7 @@ window.dash = (function () {
     <section class="hz-about" id="nosotros">
       <h2>Acerca de nosotros</h2>
       <p>Horizon Studio es una agencia de modelos webcam fundada en 2019, con sede en Los Ángeles, California. Trabajamos con chicas y parejas de habla hispana que transmiten desde su computadora o su celular, con acompañamiento cercano y pagos semanales.</p>
-      <p>Aspiramos a ser la agencia de referencia para modelos latinas en Stripchat, y creemos que eso se logra con información. Por eso creamos este panel: para que nuestras modelos conozcan su historial de rendimiento a lo largo del tiempo y se comparen con el mercado mediante gráficas y rankings, y así tomen mejores decisiones sobre sus horarios, su contenido y sus metas.</p>
+      <p>Aspiramos a ser la agencia de referencia para modelos latinas en Stripchat, y creemos que eso se logra con información. Por eso creamos este panel: para que nuestras modelos conozcan el historial de rendimiento de otras modelos y se comparen con el mercado mediante gráficas y rankings, y así tomen mejores decisiones sobre sus horarios, su contenido y sus metas.</p>
       <p>Lo compartimos de forma abierta porque es igual de útil para cualquier modelo de Stripchat que quiera entender cómo se mueve la plataforma y crecer con datos reales.</p>
     </section>
 
@@ -524,7 +526,7 @@ window.dash = (function () {
       </div>
     </section>
 
-    <div class="hz-foot">Horizon Studio · horizonstudio.biz · datos de stripexplorer.com</div>
+    <div class="hz-foot"><div>© 2026 Horizon Studio. Todos los derechos reservados.</div><p class="hz-legal">La información de este panel proviene de fuentes públicas de terceros, como Stripchat Explorer y Semrush, y se presenta únicamente con fines informativos y educativos. Horizon Studio no es propietaria de esos datos ni está afiliada a dichas plataformas ni a Stripchat. Las cifras pueden contener errores o cambiar sin previo aviso.</p></div>
   </div>
 </div>
 
@@ -589,7 +591,7 @@ dash.calc('eficiencia', {
   root.querySelectorAll('.hz-cats button').forEach((b) => b.addEventListener('click', () => { showAll = false; dash.setParams({categoria: b.dataset.cat}); }));
   root.querySelectorAll('.hz-paises button').forEach((b) => b.addEventListener('click', () => { showAll = false; dash.setParams({pais: b.dataset.pais}); }));
   const FLAGS = {
-    Argentina: '<svg viewBox="0 0 90 60" preserveAspectRatio="none"><rect width="90" height="60" fill="#74acdf"/><rect y="20" width="90" height="20" fill="#fff"/><circle cx="45" cy="30" r="9.5" fill="none" stroke="#f6b40e" stroke-width="5" stroke-dasharray="2.2 1.53"/><circle cx="45" cy="30" r="5.6" fill="#f6b40e" stroke="#85340a" stroke-width=".5"/></svg>',
+    Argentina: 'el público argentino consume contenido para adultos casi siempre desde el celular (más del 94 % de las visitas), así que lo más probable es que tus espectadores locales te vean desde el teléfono. Además, por nuestra experiencia como agencia, las chicas argentinas reciben mucho tráfico de usuarios locales, pero pocos pagan dentro de la plataforma. Muchos proponen pagar por fuera de Stripchat, algo que va contra las reglas y puede terminar en el baneo de la cuenta de la modelo si lo acepta. Otros solo buscan contenido gratis y piden shows sin pagar. Por eso conviene cobrar siempre dentro de Stripchat y pensar el show también para el público internacional.',
     Colombia: '<svg viewBox="0 0 640 480" preserveAspectRatio="none"><path fill="#ffe800" d="M0 0h640v480H0z"/><path fill="#00148e" d="M0 240h640v240H0z"/><path fill="#da0010" d="M0 360h640v120H0z"/></svg>',
   };
   root.querySelectorAll('[data-flag]').forEach((s) => { s.innerHTML = FLAGS[s.dataset.flag]; });
@@ -714,7 +716,7 @@ dash.calc('eficiencia', {
       const meter = el('div', 'hz-meter'); const fill = el('i'); fill.style.width = Math.max(3, (r.horas || 0) / maxH * 100) + '%'; meter.appendChild(fill);
       const hw = el('div'); hw.append(mrow, meter);
       const links = el('div', 'hz-links');
-      const l1 = el('a', 'hot', 'Horario ↗'); l1.href = shLink(r.nombre); l1.target = '_blank'; l1.rel = 'noopener noreferrer';
+      const l1 = el('a', 'hot', 'Strip Hours ↗'); l1.href = shLink(r.nombre); l1.target = '_blank'; l1.rel = 'noopener noreferrer';
       const l2 = el('a', null, 'Sala ↗'); l2.href = scLink(r.nombre); l2.target = '_blank'; l2.rel = 'noopener noreferrer';
       links.append(l1, l2);
       const mx = el('div', 'hz-mx'); mx.append(el('span', null, S.t), el('b', null, S.v(r)));
@@ -845,7 +847,6 @@ dash.calc('eficiencia', {
     const end = new Date(start.getTime() + 864e5);
     const tz = TZ[pais()] || TZ.Argentina;
     w.textContent = fmtBoost(start, tz) + ' → ' + fmtBoost(end, tz) + ' (hora de ' + pais() + ')';
-    document.querySelector('.t-boost-la').textContent = 'En Los Ángeles: ' + fmtBoost(start, TZ.LA) + ' → ' + fmtBoost(end, TZ.LA);
   }
 
   const UTZ = {Argentina: 'America/Argentina/Buenos_Aires', Colombia: 'America/Bogota'};
@@ -855,11 +856,11 @@ dash.calc('eficiencia', {
     const hm = (d, z) => d.toLocaleString('es-MX', {timeZone: z, hour: 'numeric', minute: '2-digit'});
     const now = new Date();
     const base = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0, 5));
-    box.querySelector('.hz-live').textContent = 'Se actualiza cada 3 horas desde las ' + hm(base, tz);
+    box.querySelector('.hz-live').textContent = 'Se actualiza cada 3 horas.';
     const d = window.__updAt;
     const full = (z) => d.toLocaleString('es-MX', {timeZone: z, day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit'});
-    box.querySelector('.l1').textContent = d ? 'Última actualización: ' + full(tz) + ' · hora de ' + p : '';
-    box.querySelector('.l3').textContent = d ? full('America/Los_Angeles') + ' · Los Ángeles, California, USA' : '';
+    box.querySelector('.l1').textContent = d ? 'Última actualización: ' + full(tz) + ' · hora de ' + p + '.' : '';
+    box.querySelector('.l3').textContent = '';
   }
 
   const PUB = {
