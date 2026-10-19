@@ -123,6 +123,14 @@ details.hz-det summary::after{content:" ▾";color:var(--mut)}
 .hz-promo h3{margin:0;font-size:16px;font-weight:600}
 .hz-promo p{margin:4px 0 0;font-size:13px;color:#c9c9d3;line-height:1.45;max-width:46ch}
 .hz-promo a{flex:none;font-size:14px;font-weight:600;padding:11px 20px;border-radius:12px;background:var(--red);color:#fff;text-decoration:none}
+.hz-sortlbl{font-size:12.5px;color:var(--mut);margin:-2px 0 12px}
+.hz-sortlbl b{color:var(--mc);font-weight:600}
+.hz-sel{border-color:var(--mc,var(--line))!important;box-shadow:0 0 0 1px var(--mc,transparent) inset}
+.hz-card{border-top:3px solid var(--mc,var(--line))}
+.hz-rk{background:var(--mc,var(--bg))!important;border-color:var(--mc,var(--line))!important;color:#0e0e12!important;font-weight:700}
+.hz-mx{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:7px 10px;border-radius:10px;background:color-mix(in srgb,var(--mc) 13%,transparent);border:1px solid color-mix(in srgb,var(--mc) 40%,transparent)}
+.hz-mx span{font-size:10.5px;color:var(--mc);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.hz-mx b{font-size:16px;color:var(--mc);font-variant-numeric:tabular-nums;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -212,6 +220,7 @@ window.dash = (function () {
           <option value="seguidores">Más seguidores</option>
         </select>
       </div>
+      <p class="hz-sortlbl" aria-live="polite"></p>
       <div class="hz-cards dash-skeleton" data-source="modelos eficiencia"></div>
       <button type="button" class="hz-more" hidden></button>
     </section>
@@ -357,6 +366,14 @@ dash.calc('eficiencia', {
   };
   root.querySelectorAll('[data-flag]').forEach((s) => { s.innerHTML = FLAGS[s.dataset.flag]; });
 
+  const SORTS = {
+    seguidores_ganados: {t: 'Más crecimiento', c: '#2fd27a', v: (r) => '+' + fmt(r.seguidores_ganados || 0) + ' seguidores'},
+    promedio_espectadores: {t: 'Más audiencia', c: '#4fb3ff', v: (r) => fmt(r.promedio_espectadores || 0) + ' espect. promedio'},
+    seguidores_por_hora: {t: 'Mejor rendimiento por hora', c: '#f5b83d', v: (r) => fmt(r.seguidores_por_hora || 0) + ' seguidores/hora'},
+    espectadores_24h: {t: 'Más vistas hoy', c: '#ff5a66', v: (r) => r.espectadores_24h == null ? 'Sin transmitir hoy' : fmt(r.espectadores_24h) + ' espect. hoy'},
+    horas: {t: 'Más horas', c: '#b18cff', v: (r) => fmtH(r.horas || 0) + ' h en vivo'},
+    seguidores: {t: 'Más seguidores', c: '#ff4d8d', v: (r) => fmt(r.seguidores || 0) + ' seguidores'},
+  };
   let rowsAll = [];
   let cardQuery = '';
   let cardSort = 'seguidores_ganados';
@@ -365,7 +382,7 @@ dash.calc('eficiencia', {
   const cSel = root.querySelector('.hz-sel');
   const more = root.querySelector('.hz-more');
   cIn.addEventListener('input', () => { cardQuery = cIn.value.trim().toLowerCase(); drawCards(); });
-  cSel.addEventListener('change', () => { cardSort = cSel.value; drawCards(); });
+  cSel.addEventListener('change', () => { cardSort = cSel.value; sortKey = cardSort; sortDir = -1; drawCards(); drawTable(); });
   more.addEventListener('click', () => { showAll = !showAll; drawCards(); });
 
   let sortKey = 'seguidores_ganados', sortDir = -1;
@@ -435,9 +452,13 @@ dash.calc('eficiencia', {
     if (m.status === 'error') { box.classList.remove('dash-skeleton'); box.replaceChildren(el('div', 'hz-fail', 'No se pudo cargar')); more.hidden = true; return; }
     if (m.status !== 'ok') return;
     box.classList.remove('dash-skeleton');
-    let rows = filtered();
-    if (cardQuery) rows = rows.filter((r) => r.nombre.toLowerCase().includes(cardQuery));
-    rows = rows.slice().sort(byDesc(cardSort));
+    const S = SORTS[cardSort];
+    root.style.setProperty('--mc', S.c);
+    const lbl = root.querySelector('.hz-sortlbl');
+    lbl.replaceChildren(document.createTextNode('Ordenado por: '), el('b', null, S.t));
+    const ranked = filtered().slice().sort(byDesc(cardSort));
+    const rankOf = new Map(ranked.map((r, i) => [r.nombre, i + 1]));
+    let rows = cardQuery ? ranked.filter((r) => r.nombre.toLowerCase().includes(cardQuery)) : ranked;
     const maxH = d3.max(rows, (r) => r.horas || 0) || 1;
     const LIMIT = 12;
     const shown = showAll ? rows : rows.slice(0, LIMIT);
@@ -446,7 +467,7 @@ dash.calc('eficiencia', {
       const card = el('article', 'hz-card');
       const head = el('div', 'hz-ch');
       const av = el('div', 'hz-av ' + k, r.nombre.replace(/[^A-Za-z0-9]/g, '').charAt(0).toUpperCase() || '?');
-      av.appendChild(el('span', 'hz-rk', '#' + (i + 1)));
+      av.appendChild(el('span', 'hz-rk', '#' + rankOf.get(r.nombre)));
       const nm = el('div', 'hz-nm');
       const a = el('a', null, r.nombre); a.href = shLink(r.nombre); a.target = '_blank'; a.rel = 'noopener noreferrer';
       const meta = el('div', 'hz-meta');
@@ -468,7 +489,8 @@ dash.calc('eficiencia', {
       const l1 = el('a', 'hot', 'Horario ↗'); l1.href = shLink(r.nombre); l1.target = '_blank'; l1.rel = 'noopener noreferrer';
       const l2 = el('a', null, 'Sala ↗'); l2.href = scLink(r.nombre); l2.target = '_blank'; l2.rel = 'noopener noreferrer';
       links.append(l1, l2);
-      card.append(head, stats, hw, links);
+      const mx = el('div', 'hz-mx'); mx.append(el('span', null, S.t), el('b', null, S.v(r)));
+      card.append(head, mx, stats, hw, links);
       return card;
     }));
     if (!rows.length) box.replaceChildren(el('div', 'hz-fail', 'Sin resultados'));
