@@ -206,6 +206,29 @@ details.hz-det summary::after{content:" ▾";color:var(--mut)}
 .hz-chk li{font-size:13px;line-height:1.45;color:#e2e2ea;padding-left:24px;position:relative}
 .hz-chk li::before{content:"✓";position:absolute;left:0;top:0;width:17px;height:17px;border-radius:50%;background:rgba(47,210,122,.18);color:#2fd27a;font-size:11px;font-weight:700;display:grid;place-items:center}
 .hz-boost .t-boost-la{display:block;font-size:12px;color:#e2e2ea;margin-top:3px}
+.hz-upd .l1{font-size:11.5px;color:#c9c9d3}
+.hz-upd .l3{font-size:11px;color:var(--mut)}
+.hz-mk2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,10rem),1fr));gap:10px}
+.hz-mk2>div{position:relative;overflow:hidden;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 14px 12px}
+.hz-mk2>div::after{content:"";position:absolute;right:-30px;top:-30px;width:90px;height:90px;border-radius:50%;background:var(--ac);opacity:.12}
+.hz-mk2 .ic{font-size:18px}
+.hz-mk2 b{display:block;font-family:var(--font-anthropic-serif);font-weight:400;font-size:30px;line-height:1.1;margin-top:6px;color:var(--ac)}
+.hz-mk2 .lb{display:block;font-size:12px;color:#c9c9d3;margin-top:4px;line-height:1.35}
+.hz-mk2 .up{display:inline-block;margin-top:8px;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:rgba(47,210,122,.15);color:#2fd27a}
+.hz-vis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr));gap:10px}
+.hz-vc{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.hz-vc h4{margin:0;font-size:15px}
+.hz-vc .tip{margin:0;font-size:12.8px;line-height:1.5;color:#e2e2ea;padding:10px 12px;border-radius:10px;background:var(--panel2);border-left:3px solid var(--ac)}
+.hz-bars{display:flex;flex-direction:column;gap:9px}
+.hz-br{display:grid;grid-template-columns:7.5rem 1fr 3.4rem;align-items:center;gap:8px;font-size:13px}
+.hz-br .tr{height:10px;border-radius:999px;background:#22222b;overflow:hidden}
+.hz-br .tr i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#4fb3ff,#74acdf)}
+.hz-br.hl .tr i{background:linear-gradient(90deg,#e8303e,#ff5a66)}
+.hz-br .pc{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.hz-rings{display:flex;justify-content:space-around;gap:10px;flex-wrap:wrap}
+.hz-ring{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12.5px;color:#c9c9d3}
+.hz-ring .r{width:78px;height:78px;border-radius:50%;background:conic-gradient(#ff4d8d calc(var(--p)*1%),#22222b 0);display:grid;place-items:center}
+.hz-ring .r b{width:60px;height:60px;border-radius:50%;background:var(--panel);display:grid;place-items:center;font-size:17px;color:#fff}
 </style>
 </head>
 <body>
@@ -233,8 +256,7 @@ window.dash = (function () {
       try {
         const u = await (await fetch('https://raw.githubusercontent.com/ingler666/horizon-stripchat/main/data/actualizado.json?v=' + Date.now())).json();
         const d = new Date(u.at);
-        const t = d.toLocaleString('es-MX', {timeZone: 'America/Los_Angeles', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit'});
-        document.querySelector('.t-upd2').textContent = 'Última actualización: ' + t + ' · Los Ángeles, California, USA';
+        window.__updAt = d; run();
       } catch (e) { /* sin fecha */ }
     },
   };
@@ -251,7 +273,7 @@ window.dash = (function () {
       <nav class="hz-nav"><a href="https://horizonstudio.biz/">Inicio</a><a class="on" href="https://horizonstudio.biz/estadisticas.html">Estadísticas</a><a href="https://horizonstudio.biz/Comisiones.html">Calculadora de comisiones</a></nav>
     </div>
     <div class="hz-top" style="margin-top:10px;justify-content:flex-end">
-      <div class="hz-upd"><div class="hz-live">Se actualiza cada 3 horas</div><div class="t-upd2"></div></div>
+      <div class="hz-upd"><div class="hz-live">Se actualiza cada 3 horas</div><div class="l1"></div><div class="l3"></div></div>
     </div>
     <div class="hz-title">
       <div class="hz-flag" aria-hidden="true"></div>
@@ -339,17 +361,38 @@ window.dash = (function () {
       <h2>Análisis de tráfico en Stripchat</h2>
       <p class="lead">El análisis de tráfico en Stripchat requiere un enfoque especializado. Al tratarse de una industria de alto tráfico y alta conversión, medir los datos correctos es crucial para optimizar las ganancias de las modelos. A continuación, se presenta un desglose de las métricas clave.</p>
 
-      <div class="hz-mk">
-        <div><b>646 M</b><span>visitas en septiembre de 2026 (+5,4 % vs. agosto)</span></div>
-        <div><b>12 min</b><span>duración media de cada visita</span></div>
-        <div><b>7 páginas</b><span>vistas por visita: el usuario recorre varias salas</span></div>
-        <div><b>+57 %</b><span>crecimiento mensual de visitas desde buscadores</span></div>
+      <div class="hz-mk2">
+        <div style="--ac:#4fb3ff"><span class="ic">🌐</span><b>646 M</b><span class="lb">visitas a Stripchat en septiembre de 2026</span><span class="up">▲ 5,4 % vs. agosto</span></div>
+        <div style="--ac:#f5b83d"><span class="ic">⏱️</span><b>12 min</b><span class="lb">dura en promedio cada visita</span></div>
+        <div style="--ac:#ff4d8d"><span class="ic">🚪</span><b>7 salas</b><span class="lb">visita cada usuario: compara varias antes de quedarse</span></div>
+        <div style="--ac:#2fd27a"><span class="ic">🔎</span><b>+57 %</b><span class="lb">creció en un mes el público que llega desde buscadores</span></div>
+      </div>
+
+      <div class="hz-vis">
+        <div class="hz-vc" style="--ac:#74acdf">
+          <h4>¿De dónde viene el público?</h4>
+          <div class="hz-bars">
+            <div class="hz-br"><span>🇺🇸 Estados Unidos</span><span class="tr"><i style="width:100%"></i></span><span class="pc">23,2 %</span></div>
+            <div class="hz-br"><span>🇧🇷 Brasil</span><span class="tr"><i style="width:52.5%"></i></span><span class="pc">12,2 %</span></div>
+            <div class="hz-br"><span>🇯🇵 Japón</span><span class="tr"><i style="width:40.2%"></i></span><span class="pc">9,3 %</span></div>
+            <div class="hz-br"><span>🇲🇽 México</span><span class="tr"><i style="width:24.6%"></i></span><span class="pc">5,7 %</span></div>
+            <div class="hz-br hl"><span>🇨🇴 Colombia</span><span class="tr"><i style="width:24%"></i></span><span class="pc">5,6 %</span></div>
+          </div>
+          <p class="tip">El público que más paga suele estar en Estados Unidos. Un saludo y frases básicas en inglés amplían mucho tu audiencia.</p>
+        </div>
+        <div class="hz-vc" style="--ac:#ff4d8d">
+          <h4>La mayoría mira desde el celular</h4>
+          <div class="hz-rings">
+            <div class="hz-ring"><div class="r" style="--p:76"><b>76 %</b></div>🇺🇸 Estados Unidos</div>
+            <div class="hz-ring"><div class="r" style="--p:79"><b>79 %</b></div>🇨🇴 Colombia</div>
+            <div class="hz-ring"><div class="r" style="--p:93"><b>93 %</b></div>🇲🇽 México</div>
+          </div>
+          <p class="tip">Porcentaje de visitas desde el celular. Encuadra pensando en una pantalla pequeña: buena luz frontal, rostro visible y nada importante en los bordes.</p>
+        </div>
       </div>
 
       <div class="hz-kgrid">
-        <div class="hz-kc" style="--kc:#74acdf"><h4>¿De dónde viene el público?</h4><p>Estados Unidos aporta el 23 % del tráfico, seguido de Brasil (12 %), Japón (9 %), México (5,7 %) y Colombia (5,6 %).</p><p class="tip">Qué significa: el público que más paga suele estar en Estados Unidos. Un saludo y frases básicas en inglés amplían mucho tu audiencia.</p></div>
-        <div class="hz-kc" style="--kc:#ff4d8d"><h4>La mayoría mira desde el celular</h4><p>En Estados Unidos el 76 % de las visitas es desde móvil, en Colombia el 79 % y en México el 93 %.</p><p class="tip">Qué significa: encuadra pensando en una pantalla pequeña. Buena luz frontal, rostro visible y nada importante en los bordes.</p></div>
-        <div class="hz-kc" style="--kc:#f5b83d"><h4>Las visitas son largas</h4><p>Cada usuario pasa unos 12 minutos y visita alrededor de 7 salas.</p><p class="tip">Qué significa: tienes pocos segundos para retener a quien entra. Saluda por su nombre, ten un tema o meta visible y mantén la sala activa.</p></div>
+        <div class="hz-kc" style="--kc:#f5b83d"><h4>Las visitas son largas</h4><p>Cada usuario pasa unos 12 minutos y recorre alrededor de 7 salas.</p><p class="tip">Qué significa: tienes pocos segundos para retener a quien entra. Saluda por su nombre, ten un tema o meta visible y mantén la sala activa.</p></div>
         <div class="hz-kc" style="--kc:#2fd27a"><h4>Cómo leer tus métricas</h4><p><b>Seguidores ganados</b> mide si atraes público nuevo. <b>Espectadores promedio</b> mide si lo retienes. <b>Seguidores por hora</b> mide si tus horas en vivo son productivas. <b>Mejor puesto</b> indica hasta dónde llegaste en el ranking mundial.</p><p class="tip">Compárate con las modelos de tu país en este panel para saber dónde mejorar.</p></div>
       </div>
       <p class="hz-src">Fuentes: Semrush (stripchat.com, septiembre de 2026) y Stripchat Explorer.</p>
@@ -795,7 +838,21 @@ dash.calc('eficiencia', {
     document.querySelector('.t-boost-la').textContent = 'En Los Ángeles: ' + fmtBoost(start, TZ.LA) + ' → ' + fmtBoost(end, TZ.LA);
   }
 
-  dash.onData(() => { prep(); drawHeader(); drawCards(); drawCharts(); drawTable(); drawHours(); drawBoost(); });
+  const UTZ = {Argentina: 'America/Argentina/Buenos_Aires', Colombia: 'America/Bogota'};
+  function drawUpd() {
+    const box = document.querySelector('.hz-upd'); if (!box) return;
+    const p = pais(), tz = UTZ[p] || UTZ.Argentina;
+    const hm = (d, z) => d.toLocaleString('es-MX', {timeZone: z, hour: 'numeric', minute: '2-digit'});
+    const now = new Date();
+    const base = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0, 5));
+    box.querySelector('.hz-live').textContent = 'Se actualiza cada 3 horas, desde las ' + hm(base, tz) + ' (hora de ' + p + ')';
+    const d = window.__updAt;
+    const full = (z) => d.toLocaleString('es-MX', {timeZone: z, day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit'});
+    box.querySelector('.l1').textContent = d ? 'Última actualización: ' + full(tz) + ' (hora de ' + p + ')' : '';
+    box.querySelector('.l3').textContent = d ? 'Los Ángeles, California, USA: ' + full('America/Los_Angeles') : '';
+  }
+
+  dash.onData(() => { prep(); drawHeader(); drawCards(); drawCharts(); drawTable(); drawHours(); drawBoost(); drawUpd(); });
 })();
 </script>
 <script>
