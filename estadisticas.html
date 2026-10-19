@@ -131,6 +131,18 @@ details.hz-det summary::after{content:" ▾";color:var(--mut)}
 .hz-mx{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:7px 10px;border-radius:10px;background:color-mix(in srgb,var(--mc) 13%,transparent);border:1px solid color-mix(in srgb,var(--mc) 40%,transparent)}
 .hz-mx span{font-size:10.5px;color:var(--mc);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
 .hz-mx b{font-size:16px;color:var(--mc);font-variant-numeric:tabular-nums;white-space:nowrap}
+.hz-ad{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 16px;border-radius:14px;text-decoration:none;color:var(--fg);border:1px solid rgba(255,255,255,.08);background:linear-gradient(120deg,rgba(232,48,62,.22),rgba(116,172,223,.12))}
+.hz-hero .hz-ad{margin-top:14px}
+.hz-ad .ic{width:38px;height:38px;border-radius:10px;background:var(--red);display:grid;place-items:center;font-size:18px;flex:none}
+.hz-ad .tx{flex:1;min-width:12rem}
+.hz-ad .tx b{display:block;font-size:14.5px}
+.hz-ad .tx span{font-size:12.5px;color:#c9c9d3}
+.hz-ad .go{font-size:13px;font-weight:600;padding:8px 14px;border-radius:10px;background:#fff;color:#0e0e12;flex:none}
+.hz-ad.alt{background:linear-gradient(120deg,rgba(47,210,122,.16),rgba(232,48,62,.14))}
+.hz-about{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+.hz-about h2{margin:0 0 8px;font-family:var(--font-anthropic-serif);font-weight:400;font-size:22px}
+.hz-about p{margin:0 0 10px;font-size:13.5px;line-height:1.6;color:#c9c9d3}
+.hz-about p.fine{font-size:12px;color:var(--mut);margin:0;padding-top:10px;border-top:1px solid var(--line)}
 </style>
 </head>
 <body>
@@ -181,10 +193,15 @@ window.dash = (function () {
     <div class="hz-title">
       <div class="hz-flag" aria-hidden="true"></div>
       <div>
-        <h1>Top <span class="t-pais">Argentina</span> · Stripchat</h1>
-        <div class="sub">Mujeres y parejas · estadísticas de los últimos 14 días · datos de stripexplorer.com<span class="t-nota"></span></div>
+        <h1>Ranking de rendimiento · <span class="t-pais">Argentina</span></h1>
+        <div class="sub">Estadísticas de los últimos 14 días · Mujeres y parejas<span class="t-nota"></span></div>
       </div>
     </div>
+    <a class="hz-ad" href="https://horizonstudio.biz/" target="_blank" rel="noopener">
+      <div class="ic">✦</div>
+      <div class="tx"><b>Horizon Studio · Agencia de modelos webcam desde 2019</b><span>Trabaja desde tu computadora o celular, con acompañamiento profesional y pagos semanales.</span></div>
+      <div class="go">Conócenos →</div>
+    </a>
     <p class="hz-take" id="conclusion">En <span class="t-pais2">Argentina</span>, en <span class="t-cat">todas las categorías</span>, <b class="t-n1 dash-skeleton" data-source="modelos" data-field="nombre">—</b> es quien más seguidores ganó (+<b class="t-g1 dash-skeleton" data-source="modelos" data-field="seguidores_ganados">—</b>) y <b class="t-n2 dash-skeleton" data-source="modelos" data-field="nombre">—</b> tiene la mayor audiencia promedio (<b class="t-a2 dash-skeleton" data-source="modelos" data-field="promedio_espectadores">—</b> espectadores).</p>
     <div class="hz-tabs hz-paises" role="group" aria-label="País" id="paises">
       <button type="button" data-pais="Argentina"><span class="mini" data-flag="Argentina"></span>Argentina</button>
@@ -224,6 +241,12 @@ window.dash = (function () {
       <div class="hz-cards dash-skeleton" data-source="modelos eficiencia"></div>
       <button type="button" class="hz-more" hidden></button>
     </section>
+
+    <a class="hz-ad alt" href="https://horizonstudio.biz/" target="_blank" rel="noopener">
+      <div class="ic">📈</div>
+      <div class="tx"><b>Usamos estos datos para hacer crecer a nuestras modelos</b><span>En Horizon Studio analizamos el mercado para definir horarios, metas y estrategia. Trabajamos con mujeres y parejas.</span></div>
+      <div class="go">Ver más →</div>
+    </a>
 
     <section class="hz-grid" id="graficas">
       <div class="hz-panel" id="crecimiento">
@@ -276,12 +299,19 @@ window.dash = (function () {
       </details>
     </section>
 
+    <section class="hz-about" id="analisis">
+      <h2>Modelos de Stripchat por país</h2>
+      <p>En Horizon Studio analizamos el mercado de Stripchat país por país para entender qué está funcionando: quién crece más rápido, quién retiene mejor a su audiencia y cuántas horas de transmisión hacen falta para destacar. Este panel reúne esa información para Argentina y Colombia y nos sirve de referencia para orientar a nuestras modelos.</p>
+      <p>Los rankings combinan a las modelos más destacadas de cada categoría y las agrupan según la ubicación declarada en su perfil de Stripchat. Así comparamos el desempeño entre regiones, detectamos tendencias de crecimiento y medimos el nivel de competencia en cada mercado.</p>
+      <p class="fine">El país de residencia lo declara cada modelo en su perfil. Las estadísticas que se muestran aquí corresponden únicamente a las modelos que han indicado un país válido como su ubicación.</p>
+    </section>
+
     <section class="hz-promo" id="comisiones">
       <div>
         <h3>¿Quieres trabajar con Horizon Studio?</h3>
-        <p>Conoce nuestro esquema de comisiones por niveles: mientras más generas, mejor te va.</p>
+        <p>Somos una agencia de modelos webcam con sede en Los Ángeles. Conoce cómo trabajamos y empieza con nosotros.</p>
       </div>
-      <a href="/Comisiones.html">Ver comisiones →</a>
+      <a href="https://horizonstudio.biz/" target="_blank" rel="noopener">Ir a Horizon Studio →</a>
     </section>
 
     <section class="hz-panel" id="glosario">
