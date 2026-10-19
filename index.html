@@ -526,7 +526,7 @@ window.dash = (function () {
       </div>
     </section>
 
-    <div class="hz-foot"><div>© 2026 Horizon Studio. Todos los derechos reservados.</div><p class="hz-legal">La información de este panel proviene de fuentes públicas de terceros, como Stripchat Explorer y Semrush, y se presenta únicamente con fines informativos y educativos. Horizon Studio no es propietaria de esos datos ni está afiliada a dichas plataformas ni a Stripchat. Las cifras pueden contener errores o cambiar sin previo aviso.</p></div>
+    <div class="hz-foot"><div>© 2026 Horizon Studio. Todos los derechos reservados.</div><p class="hz-legal">La información de este panel proviene de fuentes públicas de terceros, como Stripchat Explorer y Semrush, y se presenta únicamente con fines informativos y educativos. Horizon Studio no es propietaria de esos datos ni está afiliada a dichas plataformas ni a Stripchat.</p></div>
   </div>
 </div>
 
@@ -644,7 +644,7 @@ dash.calc('eficiencia', {
     root.querySelectorAll('.hz-paises button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.pais === p)));
     root.querySelector('.t-pais').textContent = p;
     root.querySelector('.t-pais2').textContent = p;
-    root.querySelector('.t-nota').textContent = p === 'Colombia' ? ' · las 95 primeras de cada lista' : '';
+    root.querySelector('.t-nota').textContent = '';
     const fb = root.querySelector('.hz-flag'); if (fb.dataset.p !== p) { fb.innerHTML = FLAGS[p]; fb.dataset.p = p; }
     root.querySelector('.t-cat').textContent = CATNAME[c];
     const r = dash.data('resumen');
