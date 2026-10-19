@@ -159,7 +159,7 @@ details.hz-det summary::after{content:" ▾";color:var(--mut)}
 .hz-mk div{background:var(--panel2);border-radius:12px;padding:12px}
 .hz-mk b{display:block;font-family:var(--font-anthropic-serif);font-weight:400;font-size:22px}
 .hz-mk span{font-size:11.5px;color:var(--mut)}
-.hz-hours{width:100%;border-collapse:collapse;font-size:13px}
+.hz-hours-old{width:100%;border-collapse:collapse;font-size:13px}
 .hz-hours th{text-align:left;font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;padding:8px 10px;border-bottom:1px solid var(--line)}
 .hz-hours td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
 .hz-hours td b{color:#2fd27a}
@@ -170,6 +170,26 @@ details.hz-det summary::after{content:" ▾";color:var(--mut)}
 .hz-tips div::before{content:counter(t);position:absolute;left:14px;top:14px;width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center}
 .hz-tips b{display:block;font-size:13.5px;margin-bottom:3px}
 .hz-tips span{font-size:12.8px;line-height:1.5;color:#c9c9d3}
+.hz-hc{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:14px}
+.hz-hc-h{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600}
+.hz-hc-h .mini{width:28px;height:19px}
+.hz-hc-h small{font-weight:400;color:var(--mut);font-size:12px}
+.hz-hc-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:10px}
+.hz-hb{border-radius:12px;padding:12px 14px}
+.hz-hb.pk{background:rgba(47,210,122,.12);border:1px solid rgba(47,210,122,.35)}
+.hz-hb.cl{background:rgba(245,184,61,.10);border:1px solid rgba(245,184,61,.32)}
+.hz-hb .t{font-size:11px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.hz-hb.pk .t{color:#2fd27a} .hz-hb.cl .t{color:#f5b83d}
+.hz-hb .v{font-family:var(--font-anthropic-serif);font-size:24px;margin-top:4px;line-height:1.2}
+.hz-hb .d{font-size:12px;color:#c9c9d3;margin-top:4px}
+.hz-hb .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.hz-hb .chips span{font-size:14px;font-weight:600;padding:5px 10px;border-radius:999px;background:rgba(245,184,61,.16);color:#f5d27a}
+.hz-tl{position:relative;height:16px;border-radius:999px;background:#22222b;overflow:hidden}
+.hz-tl i{position:absolute;top:0;bottom:0}
+.hz-tl i.pk{background:#2fd27a} .hz-tl i.cl{background:#f5b83d;opacity:.75}
+.hz-tlx{display:flex;justify-content:space-between;font-size:10.5px;color:var(--mut);margin-top:5px}
+.hz-wk{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#c9c9d3}
+.hz-wk::before{content:"★";color:#f5b83d}
 </style>
 </head>
 <body>
@@ -321,18 +341,9 @@ window.dash = (function () {
 
     <section class="hz-sec2" id="horarios">
       <h2>Mejores horarios para transmitir</h2>
-      <p class="lead">El mayor tráfico de Stripchat se concentra entre las 15:00 y las 23:00 UTC, cuando coinciden las tardes de Estados Unidos y las noches de Europa. Los viernes y sábados por la noche el tráfico sube cerca de un 10 %. Más tráfico también significa más competencia: si recién empiezas, las horas justo antes o después del pico pueden ayudarte a destacar.</p>
-      <div class="hz-panel" style="padding:4px 4px 0">
-        <table class="hz-hours">
-          <thead><tr><th>País</th><th>Horario pico (hora local)</th><th>Para destacar con menos competencia</th></tr></thead>
-          <tbody>
-            <tr><td>🇦🇷 Argentina</td><td><b>12:00 p. m. – 8:00 p. m.</b></td><td>10:00 a. m. – 12:00 p. m. y 8:00 – 11:00 p. m.</td></tr>
-            <tr><td>🇨🇴 Colombia</td><td><b>10:00 a. m. – 6:00 p. m.</b></td><td>8:00 – 10:00 a. m. y 6:00 – 9:00 p. m.</td></tr>
-            <tr><td>🇺🇸 Los Ángeles (referencia)</td><td><b>8:00 a. m. – 4:00 p. m.</b></td><td>6:00 – 8:00 a. m. y 4:00 – 7:00 p. m.</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="hz-src">Horarios calculados a partir del pico global de Stripchat (15:00 – 23:00 UTC) publicado por Stripchat Explorer, con el horario de verano vigente en Los Ángeles. Lo ideal es elegir un bloque fijo y repetirlo todos los días.</p>
+      <p class="lead">El mayor tráfico de Stripchat se concentra entre las 15:00 y las 23:00 UTC, cuando coinciden las tardes de Estados Unidos y las noches de Europa. Más tráfico también significa más competencia: si recién empiezas, las horas justo antes o después del pico pueden ayudarte a destacar.</p>
+      <div class="hz-hc" id="horario-pais"></div>
+      <p class="hz-src">Horarios calculados a partir del pico global de Stripchat (15:00 – 23:00 UTC) publicado por Stripchat Explorer. Lo ideal es elegir un bloque fijo y repetirlo todos los días.</p>
     </section>
 
     <section class="hz-sec2" id="tips">
@@ -690,7 +701,38 @@ dash.calc('eficiencia', {
     }));
   }
 
-  dash.onData(() => { prep(); drawHeader(); drawCards(); drawCharts(); drawTable(); });
+  const HOURS = {
+    Argentina: {pk: [12, 20], cl: [[10, 12], [20, 23]]},
+    Colombia: {pk: [10, 18], cl: [[8, 10], [18, 21]]},
+  };
+  const h12 = (h) => { const x = h % 24; const s = x < 12 ? 'a. m.' : 'p. m.'; const n = x % 12 === 0 ? 12 : x % 12; return n + ':00 ' + s; };
+  const rng = (a) => h12(a[0]) + ' – ' + h12(a[1]);
+  function drawHours() {
+    const box = document.getElementById('horario-pais');
+    if (!box) return;
+    const p = pais(), H = HOURS[p];
+    if (!H) { box.replaceChildren(); return; }
+    box.replaceChildren();
+    const head = el('div', 'hz-hc-h');
+    const fl = el('span', 'mini'); fl.innerHTML = FLAGS[p];
+    const ht = el('div', null, 'Horario recomendado en ' + p + ' '); ht.appendChild(el('small', null, '(hora local)'));
+    head.append(fl, ht);
+    const row = el('div', 'hz-hc-row');
+    const pk = el('div', 'hz-hb pk');
+    pk.append(el('div', 't', 'Horario pico · más público'), el('div', 'v', rng(H.pk)), el('div', 'd', 'Ideal si ya tienes seguidores: hay más espectadores conectados.'));
+    const cl = el('div', 'hz-hb cl');
+    const chips = el('div', 'chips'); H.cl.forEach((c) => chips.appendChild(el('span', null, rng(c))));
+    cl.append(el('div', 't', 'Menos competencia'), chips, el('div', 'd', 'Ideal si vas empezando: menos salas compitiendo por el mismo público.'));
+    row.append(pk, cl);
+    const tl = el('div', 'hz-tl');
+    const seg = (a, c) => { const i = el('i', c); i.style.left = (a[0] / 24 * 100) + '%'; i.style.width = ((a[1] - a[0]) / 24 * 100) + '%'; tl.appendChild(i); };
+    H.cl.forEach((c) => seg(c, 'cl')); seg(H.pk, 'pk');
+    const tlx = el('div', 'hz-tlx'); ['12 a. m.', '6 a. m.', '12 p. m.', '6 p. m.', '12 a. m.'].forEach((t) => tlx.appendChild(el('span', null, t)));
+    const tw = el('div'); tw.append(tl, tlx);
+    box.append(head, row, tw, el('div', 'hz-wk', 'Viernes y sábado por la noche hay cerca de 10 % más público.'));
+  }
+
+  dash.onData(() => { prep(); drawHeader(); drawCards(); drawCharts(); drawTable(); drawHours(); });
 })();
 </script>
 <script>
