@@ -234,6 +234,8 @@ details.hz-det summary::after{content:" ▾";color:var(--mut)}
 .hz-cty{font-size:12.8px;line-height:1.55;color:#e2e2ea;padding:12px;border-radius:10px;background:rgba(116,172,223,.1);border:1px solid rgba(116,172,223,.3)}
 .hz-cty b{color:#fff}
 .hz-cty .mini{width:20px;height:14px;vertical-align:-2px;margin-right:6px}
+.hz-upd{align-items:flex-start!important;text-align:left!important;gap:3px!important;padding:9px 12px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.hz-upd .hz-live{color:#e2e2ea}
 </style>
 </head>
 <body>
@@ -277,7 +279,7 @@ window.dash = (function () {
       </div>
       <nav class="hz-nav"><a href="https://horizonstudio.biz/">Inicio</a><a class="on" href="https://horizonstudio.biz/estadisticas.html">Estadísticas</a><a href="https://horizonstudio.biz/Comisiones.html">Calculadora de comisiones</a></nav>
     </div>
-    <div class="hz-top" style="margin-top:10px;justify-content:flex-end">
+    <div class="hz-top" style="margin-top:12px;justify-content:flex-start">
       <div class="hz-upd"><div class="hz-live">Se actualiza cada 3 horas</div><div class="l1"></div><div class="l3"></div></div>
     </div>
     <div class="hz-title">
@@ -853,11 +855,11 @@ dash.calc('eficiencia', {
     const hm = (d, z) => d.toLocaleString('es-MX', {timeZone: z, hour: 'numeric', minute: '2-digit'});
     const now = new Date();
     const base = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0, 5));
-    box.querySelector('.hz-live').textContent = 'Se actualiza cada 3 horas, desde las ' + hm(base, tz) + ' (hora de ' + p + ')';
+    box.querySelector('.hz-live').textContent = 'Se actualiza cada 3 horas desde las ' + hm(base, tz);
     const d = window.__updAt;
     const full = (z) => d.toLocaleString('es-MX', {timeZone: z, day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit'});
-    box.querySelector('.l1').textContent = d ? 'Última actualización: ' + full(tz) + ' (hora de ' + p + ')' : '';
-    box.querySelector('.l3').textContent = d ? 'Los Ángeles, California, USA: ' + full('America/Los_Angeles') : '';
+    box.querySelector('.l1').textContent = d ? 'Última actualización: ' + full(tz) + ' · hora de ' + p : '';
+    box.querySelector('.l3').textContent = d ? full('America/Los_Angeles') + ' · Los Ángeles, California, USA' : '';
   }
 
   const PUB = {
