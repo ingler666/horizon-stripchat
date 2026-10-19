@@ -319,7 +319,7 @@ window.dash = (function () {
 
     <section class="hz-sec" id="modelos">
       <h2>Modelos</h2>
-      <p class="note">Toca "Strip Hours" para ver las horas y sesiones de cada modelo en Striphours, o "Sala" para abrir su perfil en Stripchat.</p>
+      <p class="note">Toca "Strip Hours" para ver las horas y sesiones de cada modelo, o "Sala" para abrir su perfil en Stripchat.</p>
       <div class="hz-bar">
         <input class="hz-in" type="search" placeholder="Buscar modelo…" aria-label="Buscar modelo">
         <select class="hz-sel" aria-label="Ordenar por">
@@ -591,7 +591,7 @@ dash.calc('eficiencia', {
   root.querySelectorAll('.hz-cats button').forEach((b) => b.addEventListener('click', () => { showAll = false; dash.setParams({categoria: b.dataset.cat}); }));
   root.querySelectorAll('.hz-paises button').forEach((b) => b.addEventListener('click', () => { showAll = false; dash.setParams({pais: b.dataset.pais}); }));
   const FLAGS = {
-    Argentina: 'el público argentino consume contenido para adultos casi siempre desde el celular (más del 94 % de las visitas), así que lo más probable es que tus espectadores locales te vean desde el teléfono. Además, por nuestra experiencia como agencia, las chicas argentinas reciben mucho tráfico de usuarios locales, pero pocos pagan dentro de la plataforma. Muchos proponen pagar por fuera de Stripchat, algo que va contra las reglas y puede terminar en el baneo de la cuenta de la modelo si lo acepta. Otros solo buscan contenido gratis y piden shows sin pagar. Por eso conviene cobrar siempre dentro de Stripchat y pensar el show también para el público internacional.',
+    Argentina: '<svg viewBox="0 0 90 60" preserveAspectRatio="none"><rect width="90" height="60" fill="#74acdf"/><rect y="20" width="90" height="20" fill="#fff"/><circle cx="45" cy="30" r="9.5" fill="none" stroke="#f6b40e" stroke-width="5" stroke-dasharray="2.2 1.53"/><circle cx="45" cy="30" r="5.6" fill="#f6b40e" stroke="#85340a" stroke-width=".5"/></svg>',
     Colombia: '<svg viewBox="0 0 640 480" preserveAspectRatio="none"><path fill="#ffe800" d="M0 0h640v480H0z"/><path fill="#00148e" d="M0 240h640v240H0z"/><path fill="#da0010" d="M0 360h640v120H0z"/></svg>',
   };
   root.querySelectorAll('[data-flag]').forEach((s) => { s.innerHTML = FLAGS[s.dataset.flag]; });
@@ -864,7 +864,7 @@ dash.calc('eficiencia', {
   }
 
   const PUB = {
-    Argentina: 'el público adulto navega casi todo desde el celular: entre 94 % y 96 % de las visitas en los principales sitios para adultos (Semrush, septiembre de 2026). Además, por nuestra experiencia como agencia, las chicas argentinas atraen mucho público local, pero son pocos los usuarios que pagan. Por eso conviene pensar el show también para el público internacional.',
+    Argentina: 'el público argentino consume contenido para adultos casi siempre desde el celular (más del 94 % de las visitas), así que lo más probable es que tus espectadores locales te vean desde el teléfono. Además, por nuestra experiencia como agencia, las chicas argentinas reciben mucho tráfico de usuarios locales, pero pocos pagan dentro de la plataforma. Muchos proponen pagar por fuera de Stripchat, algo que va contra las reglas y puede terminar en el baneo de la cuenta de la modelo si lo acepta. Otros solo buscan contenido gratis y piden shows sin pagar. Por eso conviene cobrar siempre dentro de Stripchat y pensar el show también para el público internacional.',
     Colombia: 'Colombia es el 5.º país que más visita Stripchat: 35,9 millones de visitas en septiembre de 2026 (5,6 % del total) y el 79 % desde el celular. Tu propio país es un mercado grande: transmitir en español también atrae público local, y con algo de inglés sumas a Estados Unidos, el mercado más grande.',
   };
   function drawPub() {
